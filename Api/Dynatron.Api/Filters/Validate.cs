@@ -11,6 +11,7 @@ namespace Dynatron.Api.Filters
         {
             var commands = context.ActionArguments
                 .Where(a => a.Value is T)
+                .Select(a => a.Value)
                 .Cast<T>()
                 .ToList();
 
@@ -21,7 +22,10 @@ namespace Dynatron.Api.Filters
 
                 if(!result.IsValid)
                 {
-                    context.Result = new BadRequestObjectResult(new ValidationErrorModel(result.Errors));
+                    var model = new ValidationErrorModel();
+                    model.ErrorMessages.AddRange(result.Errors.Select(e => e.ErrorMessage));
+
+                    context.Result = new BadRequestObjectResult(model);
                     return;
                 }
             }

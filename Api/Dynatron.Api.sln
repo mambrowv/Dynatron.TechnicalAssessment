@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dynatron.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dynatron.Shared", "Dynatron.Shared\Dynatron.Shared.csproj", "{F40FD738-A435-44C5-B12B-3C0BD8CA3D98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynatron.Api.IntegrationTests", "Dynatron.Api.IntegrationTests\Dynatron.Api.IntegrationTests.csproj", "{BF28B0FC-8212-4824-BA5F-484D471782C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{F40FD738-A435-44C5-B12B-3C0BD8CA3D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40FD738-A435-44C5-B12B-3C0BD8CA3D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F40FD738-A435-44C5-B12B-3C0BD8CA3D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF28B0FC-8212-4824-BA5F-484D471782C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF28B0FC-8212-4824-BA5F-484D471782C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF28B0FC-8212-4824-BA5F-484D471782C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF28B0FC-8212-4824-BA5F-484D471782C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{2F84438B-995F-4717-9F27-41D0CD3975E1} = {8B753F1E-2A36-449D-AA87-FC3CCF91722E}
 		{E87D0B4F-A386-40BC-BC4A-C5EECD7AEC67} = {8B753F1E-2A36-449D-AA87-FC3CCF91722E}
 		{F40FD738-A435-44C5-B12B-3C0BD8CA3D98} = {8B753F1E-2A36-449D-AA87-FC3CCF91722E}
+		{BF28B0FC-8212-4824-BA5F-484D471782C5} = {BCFB1697-FAE7-4583-9E45-36A41EFE6275}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {574B8DAE-2EC6-43A2-8665-D908535CC89B}

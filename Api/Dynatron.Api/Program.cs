@@ -1,4 +1,5 @@
 using Dynatron.Api.Controllers.Commands;
+using Dynatron.Api.HttpPipeline;
 using Dynatron.Infrastructure;
 using Dynatron.Shared;
 using FluentValidation;
@@ -17,13 +18,15 @@ namespace Dynatron.Api
             builder.Services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerDb")));
             builder.Services.AddScoped<IRepository, Repository>();
             builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
-            builder.Services.AddValidatorsFromAssemblyContaining<CustomerCommandValidator>();
+            builder.Services.AddScoped<TransactionMiddleware>();
 
+            builder.Services.AddValidatorsFromAssemblyContaining<CustomerCommandValidator>();
             builder.Services.AddControllers();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(c => c.AddDefaultPolicy(p => p.AllowAnyHeader().AllowAnyOrigin()));
 
             var app = builder.Build();
 
@@ -56,13 +59,12 @@ namespace Dynatron.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors();
             }
 
             app.UseHttpsRedirection();
-
+            app.UseTransactionMiddleware();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
