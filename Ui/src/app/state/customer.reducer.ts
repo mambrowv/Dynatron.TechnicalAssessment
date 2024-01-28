@@ -17,10 +17,7 @@ export const customerReducer = createReducer(
     defaultState,
     on(CustomerActions.GetList, state => ({ ...state, isLoading: true })),
     on(CustomerActions.Update, state => ({ ...state, isLoading: true })),
-    on(CustomerActions.UpdateSuccess, (state, newState) => { 
-        let customers = state.items.map(cust => cust.customerId === newState.customer.customerId ? newState.customer : cust);
-        return { ...state, items: customers, isLoading: false }
-    }),
+    on(CustomerActions.Create, state => ({ ...state, isLoading: true })),
     on(CustomerActions.GetListSuccess, (state, newState) => ({
             ...state, 
             ...newState.customerState, 
@@ -28,7 +25,15 @@ export const customerReducer = createReducer(
             isLoading: false,
             isEndOfPage: newState.customerState.items.length == 0
         })
-    )
+    ),
+    on(CustomerActions.UpdateSuccess, (state, newState) => { 
+        let customers = state.items.map(cust => cust.customerId === newState.customer.customerId ? newState.customer : cust);
+        return { ...state, items: customers, isLoading: false }
+    }),
+    on(CustomerActions.CreateSuccess, (state, newState) => { 
+        let customers = [...state.items, newState.customer];
+        return { ...state, items: customers, isLoading: false }
+    }),
 );
 
 const defaultSelectionState: CustomerSelectionState = {

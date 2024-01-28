@@ -45,3 +45,9 @@ tr.editable-row:active {
 tr.editable-row.mat-selected-row {
     background: greenyellow;
 }
+
+.right {
+    display:flex;
+    flex-direction: row-reverse;
+    margin-bottom: 2em;
+}

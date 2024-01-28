@@ -1,3 +1,7 @@
+<div class="right">
+    <button mat-fab extended color="warn" (click)="openCreateDialog()"><mat-icon>add</mat-icon>Add Customer</button>
+</div>
+
 <table mat-table *ngIf="customerTableDataSource$ | async as data" mat-table [dataSource]="data" class="mat-elevation-z8">
 
     <ng-container matColumnDef="firstName">
@@ -13,7 +17,7 @@
                     (keyup.enter)="updateCustomer(customer)"
                     (click)="$event.stopPropagation()">
                     <mat-label>First Name</mat-label>
-                    <input type="test" matInput name="firstName" [(ngModel)]="customer.firstName" />
+                    <input type="text" matInput name="firstName" [(ngModel)]="customer.firstName" />
                 </mat-form-field>
             </ng-container>
         </td>
@@ -32,7 +36,7 @@
                     (keyup.enter)="updateCustomer(customer)"
                     (click)="$event.stopPropagation()">
                     <mat-label>Last Name</mat-label>
-                    <input type="test" matInput name="lastName" [(ngModel)]="customer.lastName" />
+                    <input type="text" matInput name="lastName" [(ngModel)]="customer.lastName" />
                 </mat-form-field>
             </ng-container>
         </td>

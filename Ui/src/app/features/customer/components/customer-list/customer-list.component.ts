@@ -1,16 +1,18 @@
-import { Component, HostListener } from '@angular/core';
-import { Observable, delay, firstValueFrom, forkJoin, iif, map, mergeMap, of, tap } from 'rxjs';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable, filter, firstValueFrom,map, mergeMap, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EditableCustomer } from './editable-customer.model';
+import { CreateCustomerComponent } from '../create-customer/create-customer/create-customer.component';
+import { Customer } from '../../../../state/customer.model';
 
 import * as CustomerSelectors from '../../../../state/customer.selectors';
 import * as CustomerActions from '../../../../state/customer.actions';
@@ -23,14 +25,13 @@ import * as CustomerActions from '../../../../state/customer.actions';
     FormsModule, 
     MatFormFieldModule,
     MatInputModule, 
-    MatDatepickerModule, 
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.scss'
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit {
   
   private initializedDataSource = new MatTableDataSource<EditableCustomer>();
   
@@ -40,7 +41,9 @@ export class CustomerListComponent {
   isLoading$: Observable<boolean> = of();
   isEndOfPage$: Observable<boolean> = of();
 
-  constructor(private store: Store) {}
+  createDialog!: MatDialogRef<CreateCustomerComponent, Customer>;
+
+  constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.isLoading$ = this.store.select(CustomerSelectors.GetLoadingCustomers)
@@ -75,6 +78,23 @@ export class CustomerListComponent {
   updateCustomer(customer: EditableCustomer) {
     customer.isEdit = false;
     this.store.dispatch(CustomerActions.Update({ customer: customer }));
+  }
+
+  openCreateDialog(): void {
+    this.createDialog = this.dialog.open<CreateCustomerComponent, Customer>(CreateCustomerComponent, {
+      data: {
+          customerId: 0,
+          firstName: '',
+          lastName: '',
+          emailAddress: '',
+          updateDateTime: new Date(),
+          createdDateTime: new Date()
+      }
+    });
+
+    this.createDialog.afterClosed().pipe(
+      filter((c: Customer | undefined) => !!c)
+    ).subscribe((c: Customer | undefined) => this.store.dispatch(CustomerActions.Create({ customer: c as Customer })));
   }
 
   @HostListener("window:scroll", ["$event"])

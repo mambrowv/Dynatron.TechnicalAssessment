@@ -23,6 +23,27 @@ export class CustomerEffects {
             ))
     ));
 
+    updateCustomer$ = createEffect(() => this.actions$.pipe(
+        ofType(CustomerActions.Update),
+        exhaustMap((action) => 
+            this.customerService.Update(action.customer).pipe(
+                map(data => CustomerActions.UpdateSuccess({ customer: data })),
+                catchError(() => EMPTY)
+        ))
+    ));
+
+    createCustomer$ = createEffect(() => this.actions$.pipe(
+        ofType(CustomerActions.Create),
+        exhaustMap((action) => 
+            this.customerService.Create(action.customer).pipe(
+                switchMap(data => [
+                    CustomerActions.SelectCustomer({ customerId: data.customerId }),
+                    CustomerActions.CreateSuccess({ customer: data })
+                ]),
+                catchError(() => EMPTY)
+        ))
+    ));
+
     getSelectedCustomer$ = createEffect(() => this.actions$.pipe(
         ofType(CustomerActions.GetSelectedCustomer),
         map(() => {
@@ -46,15 +67,6 @@ export class CustomerEffects {
             localStorage.setItem(CustomerSelectors.SelectedCustomerIdStorageKey, action.customerId.toString());
             return CustomerActions.CustomerSelected({customerId: action.customerId});
         })
-    ));
-
-    updateCustomer$ = createEffect(() => this.actions$.pipe(
-        ofType(CustomerActions.Update),
-        exhaustMap((action) => 
-            this.customerService.Update(action.customer).pipe(
-                map(data => CustomerActions.UpdateSuccess({ customer: data })),
-                catchError(() => EMPTY)
-        ))
     ));
 
     deselectCustomer$ = createEffect(() => this.actions$.pipe(

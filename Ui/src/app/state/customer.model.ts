@@ -3,7 +3,7 @@ export interface Customer {
     firstName: string;
     lastName: string;
     emailAddress: string;
-    updatedDateTime: Date;
+    updateDateTime: Date;
     createdDateTime: Date;
 }
 
