@@ -1,4 +1,6 @@
-﻿using Dynatron.Infrastructure;
+﻿using Dynatron.Domain;
+using Dynatron.Infrastructure;
+using Dynatron.Shared;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -17,7 +19,9 @@ namespace Dynatron.Api.IntegrationTests
             {
                 services.RemoveAll<DbContextOptions<CustomerDbContext>>();
                 services.RemoveAll<CustomerDbContext>();
+                services.RemoveAll<ISeedData<Customer>>();
 
+                services.AddSingleton<ISeedData<Customer>, TestData>();
                 services.AddDbContext<CustomerDbContext>(c => c.UseInMemoryDatabase("CustomerDb").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
             });
         }

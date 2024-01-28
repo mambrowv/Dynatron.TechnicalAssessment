@@ -1,5 +1,6 @@
 using Dynatron.Api.Controllers.Commands;
 using Dynatron.Api.HttpPipeline;
+using Dynatron.Domain;
 using Dynatron.Infrastructure;
 using Dynatron.Shared;
 using FluentValidation;
@@ -19,6 +20,7 @@ namespace Dynatron.Api
             builder.Services.AddScoped<IRepository, Repository>();
             builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
             builder.Services.AddScoped<TransactionMiddleware>();
+            builder.Services.AddSingleton<ISeedData<Customer>, SeedData>();
 
             builder.Services.AddValidatorsFromAssemblyContaining<CustomerCommandValidator>();
             builder.Services.AddControllers();
@@ -42,7 +44,8 @@ namespace Dynatron.Api
                         var isDatabaseEmpty = context.Customers.FirstOrDefault() == null;
                         if (isDatabaseEmpty)
                         {
-                            context.AddRange(SeedData.GetCustomers());
+                            var seedData = scope.ServiceProvider.GetRequiredService<ISeedData<Customer>>();
+                            context.AddRange(seedData.GetData());
                             context.SaveChanges();
                         }
                     }

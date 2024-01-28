@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
       provide: APP_INITIALIZER,
       useFactory: (store: Store) => {
         return () => {
-          store.dispatch(CustomerActions.GetList());
+          store.dispatch(CustomerActions.GetNextPage());
           store.dispatch(CustomerActions.GetSelectedCustomer());
         };
       },

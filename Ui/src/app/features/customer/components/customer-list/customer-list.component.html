@@ -1,5 +1,5 @@
 <div class="right">
-    <button mat-fab extended color="warn" (click)="openCreateDialog()"><mat-icon>add</mat-icon>Add Customer</button>
+    <button mat-fab extended color="accent" (click)="openCreateDialog()"><mat-icon>add</mat-icon>Add Customer</button>
 </div>
 
 <table mat-table *ngIf="customerTableDataSource$ | async as data" mat-table [dataSource]="data" class="mat-elevation-z8">
@@ -75,12 +75,12 @@
         <th mat-center-cell *matHeaderCellDef class="mat-header-cell"></th>
         <td mat-center-cell mat-cell *matCellDef="let customer" class="mat-cell">
             <ng-container *ngIf="customer.isSelected && !customer.isEdit">
-                <button mat-mini-fab color="primary" (click)="customer.isEdit = !customer.isEdit; $event.stopPropagation()">
+                <button mat-mini-fab color="accent" (click)="customer.isEdit = !customer.isEdit; $event.stopPropagation()">
                     <mat-icon>edit</mat-icon>
                 </button>
             </ng-container>
             <ng-container *ngIf="customer.isEdit">
-                <button mat-mini-fab color="accent" (click)="updateCustomer(customer); $event.stopPropagation()">
+                <button mat-mini-fab color="warn" (click)="updateCustomer(customer); $event.stopPropagation()">
                     <mat-icon>save</mat-icon>
                 </button>
             </ng-container>

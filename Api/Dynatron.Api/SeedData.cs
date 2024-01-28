@@ -1,10 +1,11 @@
 ﻿using Dynatron.Domain;
+using Dynatron.Shared;
 
 namespace Dynatron.Api
 {
-    internal static class SeedData
+    internal class SeedData : ISeedData<Customer>
     {
-        internal static IEnumerable<Customer> GetCustomers()
+        public IEnumerable<Customer> GetData()
         {
             yield return new Customer("Gilbert", "Gleason", "GilbertGleason@yahoo.com");
             yield return new Customer("Jessie", "Sweet", "JessieSweet@me.com");
@@ -56,6 +57,106 @@ namespace Dynatron.Api
             yield return new Customer("Robbie", "McGrath", "RobbieMcGrath@gmail.com");
             yield return new Customer("Eduardo", "Post", "EduardoPost@hotmail.com");
             yield return new Customer("Rose", "Price", "RosePrice@me.com");
+            yield return new Customer("Coral", "Harrison", "CoralHarrison@notarealsite.com");
+            yield return new Customer("Adnan", "Mckay", "AdnanMckay@email.com");
+            yield return new Customer("Aishah", "Carson", "AishahCarson@gmail.com");
+            yield return new Customer("Muhammed", "Mendez", "MuhammedMendez@email.com");
+            yield return new Customer("Brandon", "Walls", "BrandonWalls@email.com");
+            yield return new Customer("Vinny", "Morgan", "VinnyMorgan@me.com");
+            yield return new Customer("Amaan", "Gamble", "AmaanGamble@gmail.com");
+            yield return new Customer("Vivian", "Parrish", "VivianParrish@gmail.com");
+            yield return new Customer("Robin", "Gill", "RobinGill@email.com");
+            yield return new Customer("Kenny", "Fletcher", "KennyFletcher@me.com");
+            yield return new Customer("Pedro", "Lane", "PedroLane@yahoo.com");
+            yield return new Customer("Georgie", "Watkins", "GeorgieWatkins@gmail.com");
+            yield return new Customer("Lena", "Weeks", "LenaWeeks@hotmail.com");
+            yield return new Customer("Aarav", "Curry", "AaravCurry@notarealsite.com");
+            yield return new Customer("Jamal", "Santana", "JamalSantana@yahoo.com");
+            yield return new Customer("Sadia", "Parker", "SadiaParker@hotmail.com");
+            yield return new Customer("Edie", "Dalton", "EdieDalton@hotmail.com");
+            yield return new Customer("Ioan", "Lang", "IoanLang@notarealsite.com");
+            yield return new Customer("Junaid", "Franco", "JunaidFranco@hotmail.com");
+            yield return new Customer("Muhammad", "Conner", "MuhammadConner@yahoo.com");
+            yield return new Customer("Farhan", "Sutherland", "FarhanSutherland@yahoo.com");
+            yield return new Customer("Aqsa", "Watts", "AqsaWatts@gmail.com");
+            yield return new Customer("Roxanne", "Meyer", "RoxanneMeyer@me.com");
+            yield return new Customer("Daniella", "Walker", "DaniellaWalker@email.com");
+            yield return new Customer("Emil", "Oneill", "EmilOneill@me.com");
+            yield return new Customer("Freyja", "Rosario", "FreyjaRosario@notarealsite.com");
+            yield return new Customer("Eoin", "Bird", "EoinBird@hotmail.com");
+            yield return new Customer("Honey", "Mata", "HoneyMata@me.com");
+            yield return new Customer("Malakai", "Khan", "MalakaiKhan@email.com");
+            yield return new Customer("Matilda", "Schmidt", "MatildaSchmidt@me.com");
+            yield return new Customer("Kareem", "Kidd", "KareemKidd@notarealsite.com");
+            yield return new Customer("Bethany", "Mathews", "BethanyMathews@me.com");
+            yield return new Customer("Mohammed", "Olsen", "MohammedOlsen@hotmail.com");
+            yield return new Customer("Zac", "Ray", "ZacRay@gmail.com");
+            yield return new Customer("Bonnie", "Graves", "BonnieGraves@yahoo.com");
+            yield return new Customer("Charley", "Perry", "CharleyPerry@me.com");
+            yield return new Customer("Miya", "Blanchard", "MiyaBlanchard@email.com");
+            yield return new Customer("Xavier", "Sparks", "XavierSparks@yahoo.com");
+            yield return new Customer("Tasnim", "Oliver", "TasnimOliver@yahoo.com");
+            yield return new Customer("Gene", "James", "GeneJames@hotmail.com");
+            yield return new Customer("Margaret", "Gutierrez", "MargaretGutierrez@notarealsite.com");
+            yield return new Customer("Warren", "Swanson", "WarrenSwanson@me.com");
+            yield return new Customer("Chloe", "Barnes", "ChloeBarnes@yahoo.com");
+            yield return new Customer("Jasper", "Stone", "JasperStone@gmail.com");
+            yield return new Customer("Josh", "Bray", "JoshBray@hotmail.com");
+            yield return new Customer("Abbey", "Cunningham", "AbbeyCunningham@me.com");
+            yield return new Customer("Aled", "Cole", "AledCole@gmail.com");
+            yield return new Customer("Madison", "Holloway", "MadisonHolloway@hotmail.com");
+            yield return new Customer("Will", "Atkins", "WillAtkins@email.com");
+            yield return new Customer("Giovanni", "Benton", "GiovanniBenton@email.com");
+            yield return new Customer("Mikayla", "Moody", "MikaylaMoody@gmail.com");
+            yield return new Customer("Leia", "Barr", "LeiaBarr@gmail.com");
+            yield return new Customer("Ciara", "Fitzpatrick", "CiaraFitzpatrick@hotmail.com");
+            yield return new Customer("Tahlia", "Lara", "TahliaLara@me.com");
+            yield return new Customer("Gemma", "Guerra", "GemmaGuerra@me.com");
+            yield return new Customer("Stanley", "Knox", "StanleyKnox@notarealsite.com");
+            yield return new Customer("Eleanor", "Potts", "EleanorPotts@yahoo.com");
+            yield return new Customer("Taylor", "Mcleod", "TaylorMcleod@gmail.com");
+            yield return new Customer("Antonio", "Cohen", "AntonioCohen@hotmail.com");
+            yield return new Customer("Lucy", "Sandoval", "LucySandoval@email.com");
+            yield return new Customer("Rowan", "Wilkinson", "RowanWilkinson@hotmail.com");
+            yield return new Customer("Rebekah", "Shepard", "RebekahShepard@notarealsite.com");
+            yield return new Customer("Bruce", "Schneider", "BruceSchneider@yahoo.com");
+            yield return new Customer("Danyal", "Myers", "DanyalMyers@hotmail.com");
+            yield return new Customer("Jessie", "Waller", "JessieWaller@gmail.com");
+            yield return new Customer("Rosa", "Proctor", "RosaProctor@notarealsite.com");
+            yield return new Customer("Gertrude", "Glover", "GertrudeGlover@me.com");
+            yield return new Customer("Mike", "Middleton", "MikeMiddleton@email.com");
+            yield return new Customer("Finnley", "Marks", "FinnleyMarks@notarealsite.com");
+            yield return new Customer("Maxim", "Griffin", "MaximGriffin@yahoo.com");
+            yield return new Customer("Valerie", "Knowles", "ValerieKnowles@me.com");
+            yield return new Customer("Carys", "Maddox", "CarysMaddox@me.com");
+            yield return new Customer("Teresa", "Palmer", "TeresaPalmer@notarealsite.com");
+            yield return new Customer("Rajan", "Mejia", "RajanMejia@notarealsite.com");
+            yield return new Customer("Jennifer", "Pennington", "JenniferPennington@notarealsite.com");
+            yield return new Customer("Elouise", "Richard", "ElouiseRichard@email.com");
+            yield return new Customer("Janice", "Smith", "JaniceSmith@notarealsite.com");
+            yield return new Customer("Clara", "Beard", "ClaraBeard@yahoo.com");
+            yield return new Customer("Lucille", "Huber", "LucilleHuber@gmail.com");
+            yield return new Customer("Zaid", "Shelton", "ZaidShelton@hotmail.com");
+            yield return new Customer("Daisie", "Valentine", "DaisieValentine@me.com");
+            yield return new Customer("Carlo", "Dorsey", "CarloDorsey@yahoo.com");
+            yield return new Customer("Kobi", "Mcintyre", "KobiMcintyre@email.com");
+            yield return new Customer("Keziah", "Leonard", "KeziahLeonard@me.com");
+            yield return new Customer("Gwen", "Allen", "GwenAllen@hotmail.com");
+            yield return new Customer("Santiago", "Hoover", "SantiagoHoover@yahoo.com");
+            yield return new Customer("Abdullahi", "Cook", "AbdullahiCook@me.com");
+            yield return new Customer("Richie", "Ali", "RichieAli@notarealsite.com");
+            yield return new Customer("Maksymilian", "Bishop", "MaksymilianBishop@yahoo.com");
+            yield return new Customer("Kaitlin", "Nguyen", "KaitlinNguyen@yahoo.com");
+            yield return new Customer("Frances", "Morris", "FrancesMorris@gmail.com");
+            yield return new Customer("Esme", "Larson", "EsmeLarson@email.com");
+            yield return new Customer("Lori", "Harrell", "LoriHarrell@me.com");
+            yield return new Customer("Betsy", "Neal", "BetsyNeal@me.com");
+            yield return new Customer("Ahmad", "Marshall", "AhmadMarshall@email.com");
+            yield return new Customer("Trey", "Logan", "TreyLogan@notarealsite.com");
+            yield return new Customer("Constance", "Blair", "ConstanceBlair@yahoo.com");
+            yield return new Customer("Heather", "Rubio", "HeatherRubio@hotmail.com");
+            yield return new Customer("Kylie", "Murphy", "KylieMurphy@yahoo.com");
+            yield return new Customer("Enzo", "Joyce", "EnzoJoyce@yahoo.com");
         }
     }
 }

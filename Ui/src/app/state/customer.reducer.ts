@@ -15,10 +15,10 @@ const defaultState: CustomerState = {
 
 export const customerReducer = createReducer(
     defaultState,
-    on(CustomerActions.GetList, state => ({ ...state, isLoading: true })),
+    on(CustomerActions.GetNextPage, state => ({ ...state, isLoading: true })),
     on(CustomerActions.Update, state => ({ ...state, isLoading: true })),
     on(CustomerActions.Create, state => ({ ...state, isLoading: true })),
-    on(CustomerActions.GetListSuccess, (state, newState) => ({
+    on(CustomerActions.GetNextPageSuccess, (state, newState) => ({
             ...state, 
             ...newState.customerState, 
             items: [...state.items, ...newState.customerState.items], 

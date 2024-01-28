@@ -106,7 +106,7 @@ export class CustomerListComponent implements OnInit {
     const isEndOfPage = await firstValueFrom(this.isEndOfPage$);
 
     if(!isLoading && !isEndOfPage && (viewPosition / bottomOfWindow >= .95)) {
-      this.store.dispatch(CustomerActions.GetList());
+      this.store.dispatch(CustomerActions.GetNextPage());
     }
   }
 }

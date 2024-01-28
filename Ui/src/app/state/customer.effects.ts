@@ -13,12 +13,12 @@ export class CustomerEffects {
     constructor(private actions$: Actions, private customerService: CustomerService, private store: Store) { }
 
     getList$ = createEffect(() => this.actions$.pipe(
-        ofType(CustomerActions.GetList),
+        ofType(CustomerActions.GetNextPage),
         withLatestFrom(this.store.select(CustomerSelectors.GetCurrentPage)),
         filter(([_, pagination]: [any, CustomerPagination]) => !pagination.isEndOfPage),
         switchMap(([_, pagination]: [any, CustomerPagination]) => 
             this.customerService.GetList(pagination.page + 1, pagination.pageSize).pipe(
-                map(data => CustomerActions.GetListSuccess({ customerState: data })),
+                map(data => CustomerActions.GetNextPageSuccess({ customerState: data })),
                 catchError(() => EMPTY)
             ))
     ));
@@ -36,13 +36,16 @@ export class CustomerEffects {
         ofType(CustomerActions.Create),
         exhaustMap((action) => 
             this.customerService.Create(action.customer).pipe(
-                switchMap(data => [
-                    CustomerActions.SelectCustomer({ customerId: data.customerId }),
-                    CustomerActions.CreateSuccess({ customer: data })
-                ]),
+                map(data => CustomerActions.CreateSuccess({ customer: data })),
                 catchError(() => EMPTY)
         ))
     ));
+
+    createSuccessCustomer$ = createEffect(() => this.actions$.pipe(
+        ofType(CustomerActions.CreateSuccess),
+        map((action) =>  CustomerActions.SelectCustomer({ customerId: action.customer.customerId }))
+        )
+    );
 
     getSelectedCustomer$ = createEffect(() => this.actions$.pipe(
         ofType(CustomerActions.GetSelectedCustomer),

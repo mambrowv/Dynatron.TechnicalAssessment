@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { Customer, CustomerState } from "./customer.model";
 
-export const GetList = createAction('[Customer] Get List');
-export const GetListSuccess = createAction('[Customer] Get List Success', props<{customerState: CustomerState}>());
+export const GetNextPage = createAction('[Customer] Get Next Page');
+export const GetNextPageSuccess = createAction('[Customer] Get Next Page Success', props<{customerState: CustomerState}>());
 
 export const Update = createAction('[Customer] Update', props<{customer: Customer}>());
 export const UpdateSuccess = createAction('[Customer] Update Success', props<{customer: Customer}>());

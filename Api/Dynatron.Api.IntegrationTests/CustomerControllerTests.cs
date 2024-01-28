@@ -19,10 +19,10 @@ namespace Dynatron.Api.IntegrationTests
         }
 
         [Fact]
-        public async Task GetList_NoQueryParameters_ReturnsPagedListWith25Items()
+        public async Task GetList_FivePageSize_ReturnsPagedListWithFiveItems()
         {
             // Arrange
-            var url = "/Customers";
+            var url = "/Customers?pageSize=5";
 
             // Act
             var response = await _httpClient.GetAsync(url);
@@ -35,8 +35,8 @@ namespace Dynatron.Api.IntegrationTests
             var customers = JsonConvert.DeserializeObject<PagedList<CustomerModel>>(await response.Content.ReadAsStringAsync());
 
             customers.Page.Should().Be(1);
-            customers.PageSize.Should().Be(25);
-            customers.Items.Should().HaveCount(25);
+            customers.PageSize.Should().Be(5);
+            customers.Items.Should().HaveCount(5);
         }
 
         [Fact]
