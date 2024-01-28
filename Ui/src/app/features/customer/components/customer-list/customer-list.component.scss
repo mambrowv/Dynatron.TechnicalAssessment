@@ -1,0 +1,47 @@
+table {
+    margin-bottom: 15em;
+}
+
+th.mat-header-cell, 
+td.mat-column-updateDateTime, 
+td.mat-column-createdDateTime,
+td.mat-column-isEdit {
+    text-align: center;
+}
+
+td.mat-cell {
+    height:70px;
+}
+
+td > mat-form-field {
+    width:100%;
+    padding-top:.5em;
+    margin-bottom:-1.25em;
+}
+
+.mat-column-firstName, .mat-column-lastName {
+    min-width:15em;
+    max-width:15em;
+}
+
+.mat-column-emailAddress {
+    min-width:30em;
+    max-width:30em;
+}
+
+.mat-column-isEdit {
+    min-width:10em;
+    max-width:10em;
+}
+
+tr.editable-row:hover {
+    background: #f7f7f7;
+}
+
+tr.editable-row:active {
+    background: #f2f2f2;
+}
+
+tr.editable-row.mat-selected-row {
+    background: greenyellow;
+}

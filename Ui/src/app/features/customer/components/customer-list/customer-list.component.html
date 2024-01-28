@@ -1,3 +1,100 @@
-<ng-container *ngFor="let customer of customers$ | async">
-    {{customer.firstName}} {{customer.lastName}} <br />
-</ng-container>
+<table mat-table *ngIf="customerTableDataSource$ | async as data" mat-table [dataSource]="data" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="firstName">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell">First Name</th>
+        <td mat-cell *matCellDef="let customer" class="mat-cell">
+            <ng-container *ngIf="!customer.isEdit">
+                {{customer.firstName}}
+            </ng-container>
+            <ng-container *ngIf="customer.isEdit">
+                <mat-form-field 
+                    appearance="outline" 
+                    class="mat-form-field-no-padding" 
+                    (keyup.enter)="updateCustomer(customer)"
+                    (click)="$event.stopPropagation()">
+                    <mat-label>First Name</mat-label>
+                    <input type="test" matInput name="firstName" [(ngModel)]="customer.firstName" />
+                </mat-form-field>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell">Last Name</th>
+        <td mat-cell *matCellDef="let customer" class="mat-cell">
+            <ng-container *ngIf="!customer.isEdit">
+                {{customer.lastName}}
+            </ng-container>
+            <ng-container *ngIf="customer.isEdit">
+                <mat-form-field 
+                    appearance="outline" 
+                    class="mat-form-field-no-padding" 
+                    (keyup.enter)="updateCustomer(customer)"
+                    (click)="$event.stopPropagation()">
+                    <mat-label>Last Name</mat-label>
+                    <input type="test" matInput name="lastName" [(ngModel)]="customer.lastName" />
+                </mat-form-field>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="emailAddress">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell">Email</th>
+        <td mat-cell *matCellDef="let customer" class="mat-cell">
+            <ng-container *ngIf="!customer.isEdit">
+                {{customer.emailAddress}}
+            </ng-container>
+            <ng-container *ngIf="customer.isEdit">
+                <mat-form-field 
+                    appearance="outline" 
+                    class="mat-form-field-no-padding" 
+                    (keyup.enter)="updateCustomer(customer)"  
+                    (click)="$event.stopPropagation()">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput name="emailAddress" [(ngModel)]="customer.emailAddress" />
+                </mat-form-field>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdDateTime">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell">Created At</th>
+        <td mat-center-cell mat-cell *matCellDef="let customer" class="mat-cell"> {{customer.createdDateTime | date:'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updateDateTime">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell">Updated At</th>
+        <td mat-center-cell mat-cell *matCellDef="let customer" class="mat-cell"> {{customer.updateDateTime | date:'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isEdit">
+        <th mat-center-cell *matHeaderCellDef class="mat-header-cell"></th>
+        <td mat-center-cell mat-cell *matCellDef="let customer" class="mat-cell">
+            <ng-container *ngIf="customer.isSelected && !customer.isEdit">
+                <button mat-mini-fab color="primary" (click)="customer.isEdit = !customer.isEdit; $event.stopPropagation()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="customer.isEdit">
+                <button mat-mini-fab color="accent" (click)="updateCustomer(customer); $event.stopPropagation()">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="customerTableScheme"></tr>
+    <tr mat-row class="editable-row" 
+        *matRowDef="let customer; columns: customerTableScheme" 
+        (click)="customer.isSelected && !customer.isEdit ? deselectCustomer() : selectCustomer(customer.customerId)"
+        [class.mat-selected-row] = "customer.isSelected">
+    </tr>
+
+</table>
+
+<div style="display: flex; justify-content: center; align-items: center;" *ngIf="isLoading$ | async">
+  <mat-progress-spinner 
+    color="primary" 
+    mode="indeterminate">
+  </mat-progress-spinner>
+</div>
