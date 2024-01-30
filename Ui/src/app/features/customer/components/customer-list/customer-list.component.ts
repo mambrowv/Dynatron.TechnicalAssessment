@@ -37,7 +37,7 @@ export class CustomerListComponent implements OnInit {
   
   customerTableScheme = [ 'firstName', 'lastName', 'emailAddress', 'createdDateTime', 'updateDateTime', 'isEdit' ];
   customers$: Observable<EditableCustomer[]> = of();
-  customerTableDataSource$: Observable<MatTableDataSource<any>> = of();
+  customerTableDataSource$: Observable<MatTableDataSource<EditableCustomer>> = of();
   isLoading$: Observable<boolean> = of();
   isEndOfPage$: Observable<boolean> = of();
 
