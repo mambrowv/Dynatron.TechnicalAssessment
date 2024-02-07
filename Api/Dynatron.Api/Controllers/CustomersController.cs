@@ -21,7 +21,7 @@ namespace Dynatron.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType<CustomerModel>(StatusCodes.Status200OK)]
+        [ProducesResponseType<PagedList<CustomerModel>>(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetList([FromQuery] int page = 1, [FromQuery] int pageSize = 25)
         {
             if(page <= 0 || pageSize <= 0)
